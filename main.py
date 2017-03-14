@@ -1,7 +1,7 @@
 # coding=gbk
 from flask import Flask, render_template,url_for
 from flask_bootstrap import Bootstrap
-from markdown import markdown
+from markdown import markdown,markdownFromFile
 import os
 app = Flask(__name__)
 groups = {}
@@ -10,16 +10,15 @@ article_path=".\\static\\articles\\"
 
 @app.route('/')
 def hello_world():
-
 	init()
-	f = open('.\\第五次进展报告.md', 'r', encoding='utf-8')
-	return render_template('md.html', md=markdown(f.read(), output_format='html4'), title='第五次进展报告', groups=groups)
+	with open('.\\第五次进展报告.md', 'r', encoding='utf-8') as f:
+		return render_template('md.html', md=markdown(f.read(), output_format='html4',extensions=['markdown.extensions.extra', 'codehilite']), title='第五次进展报告', groups=groups)
 
 
 @app.route('/<group>/<article>')
 def show_article(group,article):
-	f = open('{0}\\{1}\\{2}'.format(article_path,group,article), 'r', encoding='utf-8')
-	return render_template('md.html', md=markdown(f.read(), output_format='html4'), title='第五次进展报告', groups=groups)
+	with open('{0}\\{1}\\{2}'.format(article_path,group,article), 'r', encoding='utf-8') as f:
+		return render_template('md.html', md=markdown(f.read(), output_format='html4', extensions=['markdown.extensions.extra', 'codehilite']), title='第五次进展报告', groups=groups)
 
 
 def init():
@@ -31,5 +30,4 @@ def init():
 	print(groups)
 
 if __name__ == '__main__':
-	app.run()
-	pass
+	app.run(host='0.0.0.0')

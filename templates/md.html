@@ -7,6 +7,7 @@
     <title>{{title}}</title>
 
     <link href="{{ url_for('static',filename='min.css')}}" rel="stylesheet" media="screen">
+    <link href="{{ url_for('static',filename='pygments.css')}}" rel="stylesheet" media="screen">
 </head>
 {% extends "base.html" %}
 {% block title %} - Index - {% endblock %}
@@ -23,7 +24,7 @@
                     <a href="#" class="dropdown-toggle"  data-toggle="dropdown">{{ group[0] }}</a>
                     <ul class="dropdown-menu">
                         {% for article in group[1].items() %}
-                        <li class="active"><a href="{{ article[1] }}">{{ article[0] }}</a></li>
+                        <li ><a href="{{ article[1] }}">{{ article[0] }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
@@ -32,6 +33,7 @@
         </div>
     </div>
 </nav>
+<body class="theme">
 {% endblock %}
 {% block page_content %}
 <div id="editor-reader-full" class="editor-reader-full-shown" style="position: static;">
@@ -40,8 +42,6 @@
     </div>
 </div>
 {% endblock %}
-<body class="theme">
-
 
 </body>
 </html>
