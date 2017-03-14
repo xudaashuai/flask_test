@@ -1,0 +1,48 @@
+
+<html class="theme">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>{{title}}</title>
+
+    <link href="{{ url_for('static',filename='min.css')}}" rel="stylesheet" media="screen">
+</head>
+{% extends "base.html" %}
+{% block title %} - Index - {% endblock %}
+{% block navbar %}
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">徐大帅</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                {% for group in groups.items() %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown">{{ group[0] }}</a>
+                    <ul class="dropdown-menu">
+                        {% for article in group[1].items() %}
+                        <li class="active"><a href="{{ article[1] }}">{{ article[0] }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+{% block page_content %}
+<div id="editor-reader-full" class="editor-reader-full-shown" style="position: static;">
+    <div id="wmd-preview" class="wmd-preview wmd-preview-full-reader"><div class="md-section-divider"></div><div class="md-section-divider"></div>
+        {{md|safe}}
+    </div>
+</div>
+{% endblock %}
+<body class="theme">
+
+
+</body>
+</html>
+    
