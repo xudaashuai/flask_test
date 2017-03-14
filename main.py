@@ -26,7 +26,7 @@ def init():
 	for folder in folders:
 		groups[folder]={}
 		for article in os.listdir(article_path+'/'+folder):
-			groups[folder][article]='http://120.25.75.23:5000/{0}/{1}'.format(folder,article)
+			groups[folder][article]='http://www.Ðì´óË§.top/{0}/{1}'.format(folder,article)
 	print(groups)
 
 if __name__ == '__main__':
